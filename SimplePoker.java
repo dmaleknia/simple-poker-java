@@ -85,7 +85,7 @@ Your program should read in five values and then print out either "Straight", "P
  import java.util.Arrays;
  import java.util.Scanner;
  
- public class SimplePoker {
+ public class Main {
      public static void main(String[] args) {
          Scanner scnr = new Scanner(System.in);
          int[] cards = new int[5];
@@ -113,34 +113,31 @@ Your program should read in five values and then print out either "Straight", "P
              }
          }
  
-         // Logic for hands defined in the assignment
-         boolean isFourOfAKind = false, isThreeOfAKind = false, isPair = false, isTwoPair = false;
-         int pairCount = 0;
+         boolean isFourOfAKind = false, isThreeOfAKind = false;
+         int pairs = 0;
  
          for (int i = 0; i < cards.length; i++) {
-             int count = 1; // Start with 1 for the current card
-             for (int j = i + 1; j < cards.length; j++) {
+             int count = 0;
+             for (int j = 0; j < cards.length; j++) {
                  if (cards[i] == cards[j]) {
                      count++;
                  }
              }
              if (count == 4) {
                  isFourOfAKind = true;
-                 break; // No need to continue if four of a kind is found
+                 break; // Found a four of a kind, so we can break out of the loop
              } else if (count == 3) {
                  isThreeOfAKind = true;
              } else if (count == 2) {
-                 pairCount++;
-                 if (pairCount == 2) {
-                     isTwoPair = true;
-                 } else {
-                     isPair = true;
+                 // To ensure we count each pair only once, check if this is the first card of the pair
+                 if (i == 0 || (i > 0 && cards[i] != cards[i-1])) {
+                     pairs++;
                  }
-                 i += count - 1; // Skip checked cards
              }
          }
  
-         boolean isFullHouse = isThreeOfAKind && isPair;
+         boolean isFullHouse = isThreeOfAKind && pairs >= 1;
+         boolean isTwoDifferentPairs = pairs == 2;
  
          // Print the result
          if (isStraight) {
@@ -151,13 +148,14 @@ Your program should read in five values and then print out either "Straight", "P
              System.out.println("Full house");
          } else if (isThreeOfAKind) {
              System.out.println("Three of a kind");
-         } else if (isTwoPair) {
-             System.out.println("Two pair");
-         } else if (isPair) {
+         } else if (isTwoDifferentPairs) {
+             System.out.println("Two different pairs");
+         } else if (pairs == 1) {
              System.out.println("Pair");
          } else {
              System.out.println("High card");
          }
      }
  }
+ 
  
