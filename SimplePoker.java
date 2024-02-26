@@ -81,109 +81,110 @@ Four matching cards
 Your program should read in five values and then print out either "Straight", "Pair", or "High Card".
  */
 
-import java.util.Arrays;
-import java.util.Scanner;
-
- public class SimplePoker {
-    public static void main(String[] args) {
-        scanner scanner = new scanner(System.in);
-        int cards[] = new int[5];
-
-        System.out.println("Enter five numeric cards, no face cards. Use 2 - 9.")
-
-        // Read in the cards
-        for (int i = 0; i < 5; i++) {
-            System.out.println("Card: " + (i + 1));
-            cards[i] = scanner.nextInt();
-            if (cards[i] < 2 || cards[i] > 9) {
-                System.out.println("Invalid card. Try again."); // Error message
-                i--;
-            }
-        }
-        scanner.close();
-        
-        // Sort the array of cards
-        Arrays.sort(cards);
-
-        // Check for straight
-        boolean isStraight;
-
-        for (int i = 0; i < 5; i++) {
-            if (cards[i] + 1 != cards[i + 1]) {
-                isStraight = false; // Found a pair of numbers that are not consecutive
-            } else {
-                isStraight = true; // Found a pair of numbers that are consecutive
-            }
-        }
-
-        // Check for four of a kind
-        boolean isFourOfAKind;
-
-        for (int i = 0; i < 5; i++) {
-            int count = 0; // Count occurrences of array[i]
-            for (int j = 0; j < 5; j++) {
-                if (array[i] == array[j]) {
-                    count++;
-                }
-            }
-            // Check if the current number occurs exactly 4 times
-            if (count == 4) {
-                isFourOfAKind = true;
-            } else {
-                isFourOfAKind = false;
-            }
-        }
-        
-        // Check for three of a kind
-        boolean isThreeOfAKind;
-
-        for (int i = 0; i < 5; i++) {
-            int count = 0; // Count occurrences of array[i]
-            for (int j = 0; j < 5; j++) {
-                if (array[i] == array[j]) {
-                    count++;
-                }
-            }
-            // Check if the current number occurs exactly 3 times
-            if (count == 3) {
-                isThreeOfAKind = true;
-            } else {
-                isThreeOfAKind = false;
-            }
-        }
-        
-        // Check for two pairs
-        boolean isTwoPair;
-
-        for (int i = 0; i < 5; i++) {
-            int count = 0; // Count occurrences of array[i]
-            for (int j = 0; j < 5; j++) {
-                if (array[i] == array[j]) {
-                    count++;
-                }
-            }
-            // Check if the current number occurs exactly 2 times
-            if (count == 2) {
-                isTwoPair = true;
-            } else {
-                isTwoPair = false;
-            }
-        }
-
-        // Print the result of the game 
-        if (isStraight) {
-            System.out.println("Straight");
-        } else if (isFourOfAKind) {
-            System.out.println("Four of a kind");
-        } else if (isThreeOfAKind && isTwoPair) {
-            System.out.println("Full house");
-        } else if (isThreeOfAKind) {
-            System.out.println("Three of a kind");
-        } else if (isTwoPair) {
-            System.out.println("Two pair");
-        } else {
-            System.out.println("High card");
-        }
-
-    }
- }
+ import java.util.Arrays;
+ import java.util.Scanner;
+ 
+  public class SimplePoker {
+     public static void main(String[] args) {
+         Scanner scnr = new Scanner(System.in);
+         int cards[] = new int[5];
+ 
+         System.out.println("Enter five numeric cards, no face cards. Use 2 - 9.");
+ 
+         // Read in the cards
+         for (int i = 0; i < 5; i++) {
+             System.out.println("Card: " + (i + 1));
+             cards[i] = scnr.nextInt();
+             if (cards[i] < 2 || cards[i] > 9) {
+                 System.out.println("Invalid card. Try again."); // Error message
+                 i--;
+             }
+         }
+         scnr.close();
+ 
+         // Sort the array of cards
+         Arrays.sort(cards);
+ 
+         // Check for straight
+         boolean isStraight = false;
+ 
+         for (int i = 0; i < 5; i++) {
+             if (cards[i] + 1 != cards[i + 1]) {
+                 isStraight = false; // Found a pair of numbers that are not consecutive
+             } else {
+                 isStraight = true; // Found a pair of numbers that are consecutive
+             }
+         }
+ 
+         // Check for four of a kind
+         boolean isFourOfAKind = false;
+ 
+         for (int i = 0; i < 5; i++) {
+             int count = 0; // Count occurrences of cards[i]
+             for (int j = 0; j < 5; j++) {
+                 if (cards[i] == cards[j]) {
+                     count++;
+                 }
+             }
+             // Check if the current number occurs exactly 4 times
+             if (count == 4) {
+                 isFourOfAKind = true;
+             } else {
+                 isFourOfAKind = false;
+             }
+         }
+ 
+         // Check for three of a kind
+         boolean isThreeOfAKind = false;
+ 
+         for (int i = 0; i < 5; i++) {
+             int count = 0; // Count occurrences of array[i]
+             for (int j = 0; j < 5; j++) {
+                 if (cards[i] == cards[j]) {
+                     count++;
+                 }
+             }
+             // Check if the current number occurs exactly 3 times
+             if (count == 3) {
+                 isThreeOfAKind = true;
+             } else {
+                 isThreeOfAKind = false;
+             }
+         }
+ 
+         // Check for two pairs
+         boolean isTwoPair = false;
+ 
+         for (int i = 0; i < 5; i++) {
+             int count = 0; // Count occurrences of array[i]
+             for (int j = 0; j < 5; j++) {
+                 if (cards[i] == cards[j]) {
+                     count++;
+                 }
+             }
+             // Check if the current number occurs exactly 2 times
+             if (count == 2) {
+                 isTwoPair = true;
+             } else {
+                 isTwoPair = false;
+             }
+         }
+ 
+         // Print the result of the game 
+         if (isStraight) {
+             System.out.println("Straight");
+         } else if (isFourOfAKind) {
+             System.out.println("Four of a kind");
+         } else if (isThreeOfAKind && isTwoPair) {
+             System.out.println("Full house");
+         } else if (isThreeOfAKind) {
+             System.out.println("Three of a kind");
+         } else if (isTwoPair) {
+             System.out.println("Two pair");
+         } else {
+             System.out.println("High card");
+         }
+ 
+     }
+  }
+ 
