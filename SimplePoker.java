@@ -85,7 +85,7 @@ Your program should read in five values and then print out either "Straight", "P
  import java.util.Arrays;
  import java.util.Scanner;
  
- public class Main {
+ public class SimplePoker {
      public static void main(String[] args) {
          Scanner scnr = new Scanner(System.in);
          int[] cards = new int[5];
